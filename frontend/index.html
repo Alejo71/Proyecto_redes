@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapa de Riesgo | Deslizamientos Colombia</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Proyecto autónomo</p>
+          <h1>Mapa de Colombia con zonas de riesgo y clima actual</h1>
+          <p class="lead">La app muestra corredores con problemas, el clima actual por coordenadas y un mapa para ubicar las zonas críticas.</p>
+        </div>
+        <div class="status">
+          <span class="muted">Zona seleccionada</span>
+          <strong id="selectedZoneName">Bogotá - Villavicencio</strong>
+          <span id="selectedZoneMeta" class="muted">Cargando...</span>
+        </div>
+      </section>
+
+      <section class="layout">
+        <article class="card map-card">
+          <div class="card-head">
+            <div>
+              <h2>Mapa de Colombia</h2>
+              <p class="muted">Haz clic en una zona o usa la lista para navegar.</p>
+            </div>
+            <div class="legend">
+              <span><i class="dot low"></i>Bajo</span>
+              <span><i class="dot moderate"></i>Moderado</span>
+              <span><i class="dot high"></i>Alto</span>
+              <span><i class="dot critical"></i>Crítico</span>
+            </div>
+          </div>
+          <div id="map"></div>
+        </article>
+
+        <aside class="sidebar">
+          <article class="card">
+            <h2>Zona activa</h2>
+            <label>Corredor<select id="zoneSelect"></select></label>
+            <div class="metrics">
+              <div class="metric"><span>Riesgo</span><strong id="riskScore">--</strong></div>
+              <div class="metric"><span>Clima</span><strong id="weatherDescription">--</strong></div>
+              <div class="metric"><span>Temperatura</span><strong id="temperatureValue">--</strong></div>
+              <div class="metric"><span>Lluvia</span><strong id="precipitationValue">--</strong></div>
+            </div>
+            <p id="recommendation" class="lead">Selecciona una zona para ver el análisis.</p>
+          </article>
+
+          <article class="card">
+            <h2>Ruta de prueba</h2>
+            <label>Nombre<input id="travelerName" value="Viajero UNAL" /></label>
+            <label>ID<input id="travelerId" value="traveler-01" /></label>
+            <div class="inline">
+              <label>Latitud<input id="lat" type="number" step="0.0001" value="4.605" /></label>
+              <label>Longitud<input id="lng" type="number" step="0.0001" value="-73.98" /></label>
+            </div>
+            <div class="button-row">
+              <button id="refreshButton" type="button">Actualizar zona</button>
+              <button id="connectButton" type="button">Conectar alerta</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h2>Zonas con problema</h2>
+            <div id="zonesList" class="feed"></div>
+          </article>
+        </aside>
+      </section>
+
+      <section class="card wide-card">
+        <div class="card-head">
+          <div>
+            <h2>Alertas en tiempo real</h2>
+            <p class="muted">Se actualiza según el corredor que actives.</p>
+          </div>
+          <span id="connectionState" class="badge low">Desconectado</span>
+        </div>
+        <div id="alertsFeed" class="feed"></div>
+      </section>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script type="module" src="/assets/app.js"></script>
+  </body>
+</html>
